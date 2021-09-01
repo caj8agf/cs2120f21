@@ -7,14 +7,22 @@ Welcome to UVa CS2120-003 Fall 2021 taught by Kevin Sullivan. We're going to use
 - Update your operating system:
   - If MacOS: Be sure your OS is up-to-date (current version of Big Sur, 11.5.2 as of this writing).
   - If Windows:
-    - Windows 10 Home won't do, but it's probably what you have. Run the System Information App to find out.
-    - You must either be running or update to Windows 10 Professional, Enterprises, or Education
-      - Outside UVa:  Update keys are readily available online
+    - If you already have Windows Pro, Education, or Enterprise, skip the remaining steps, else continue.
+    - Windows 10 Home won't do: You must update to Windows 10 Professional, Enterprises, or Education
+      - Outside UVa:  Update keys are readily and immediately available online
       - UVa students: Get or update to Windows 10 Education through ITS, as follows:
-        1. Get OS Windows Update license key from ITS: <https://virginia.service-now.com/its/>.  
-        2. Click Software in the left-hand navigation. Select the *latest* Windows 10 Education version. Get an update key.
-        3. After obtaining the OS key, copy and paste it in to the Windows Activation page (same screen as Windows Update).
-        4. Reboot your machine. You can check the Windows *System Information* app to confirm that your OS is updated.
+        1. Get OS Windows Update license key from ITS: <https://azureforeducation.microsoft.com/devtools>.
+        3. Sign in using your UVa credentials.
+        4. Click Software in the left-hand navigation. 
+        5. Select Windows 10 Education version 21H1 then click on the right to get an update key.
+        6. After obtaining the OS key copy it, go to Windows Activation Settings, select Change Product Key, paste your upgrade key, commit the change (hit Enter or OK or whatever is required), and you're done. 
+        7. Reboot your machine. When it boots up, you can check the *System Information* App to confirm that your OS is updated.
+- Install git on your computer (if you know you already have it, skip this step):
+  - Windows: https://git-scm.com/download/win
+  - OSX/MacOs
+    - Find and run the Terminal program
+    - Enter the following command in the window: xcode-select --install
+    - When it asks, go ahead with the standard install process. 
 - Have a GitHub account. Create one for yourself if necessary. It's free: <https://github.com/>
 - Install Docker Desktop: <https://www.docker.com/products/docker-desktop>. It's free. If you already have it, update it to the current version.
 - Install VSCode: <https://code.visualstudio.com/download>. It's free.
@@ -27,6 +35,7 @@ Welcome to UVa CS2120-003 Fall 2021 taught by Kevin Sullivan. We're going to use
   - Select the green Code button, then HTTPS, then copy the URL that is provided. This will be the GitHub URL of your newly forked copy of the respository.
 - Start up your new environment
   - Start a *new* VSCode window.
+  - Using the "extensions" tool (four squares with one out of place on the left of your VSCode screen), search for and install the *Remote Containers* extension. (The green icon at the lower left gets you the available Remote Containers commands direclty.)
   - Use CTRL/CMD-SHIFT-P to bring up the VSCode command palatte.
   - Search for and select *Clone Repository in Container Volume*
   - Paste in the GitHub URL of your new clone as the argument.
@@ -65,4 +74,4 @@ If you think you've found a problem, revisit this GitHub page and report an Issu
 
 - Acknowledgement: This work is supported in part by the National Science Foundation under grant (Award Abstract) #1909414 to Kevin Sullivan and Sebastian Elbaum.
 - Copyright: © 2021 by Kevin Sullivan, Sebastian Elbaum, et al.
-- Primary and Contact Author: Kevin Sullivan. UVa CS Dept. sullivan@virginia.edu. Acknowledgements to Charlie Houghton, Andrew Elsey, et al.  
+- Primary and Contact Author: Kevin Sullivan. UVa CS Dept. sullivan@virginia.edu. Acknowledgements to Charlie Houghton, Andrew Elsey, et al., for preliminary work on tooling.  
