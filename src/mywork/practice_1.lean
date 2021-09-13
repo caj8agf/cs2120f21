@@ -49,7 +49,8 @@ theorem prop_1_proof : prop_1 :=
 begin
   unfold prop_1,
   assume T z w e,
-  rw e
+  apply eq.subst e,
+  exact eq.refl w,
 end
 
 /-
@@ -126,7 +127,7 @@ axiom pf_raining : raining
 
 example : streets_wet :=
  begin
-   
+   apply (if_raining_then_streets_wet pf_raining),
  end
 
 /- 
@@ -187,7 +188,7 @@ proof, let's call it p_qr, of (P ∧ (Q ∧ R)) [by
 application of ∧ and → introduction.] What now
 remains to be proved is ((P ∧ Q) ∧ R). We can
 construct a proof of this proposition by applying
-_____ to a proof of (P ∧ Q) and a proof of R.
+and.intro to a proof of (P ∧ Q) and a proof of R.
 What remains, then, is to obtain these proofs.
 But this is easily done by the application of
 ____ to ____. QED. 
