@@ -175,6 +175,10 @@ theorem and_associative :
 begin
   intros P Q R h,
   have p : P := and.elim_left h,
+  have qr : Q ∧ R := and.elim_right h,
+  have q : Q := and.elim_left qr,
+  have r : R :=and.elim_right qr,
+  exact and.intro (and.intro p q) r,
 end
 
 /- #11
@@ -191,7 +195,7 @@ construct a proof of this proposition by applying
 and.intro to a proof of (P ∧ Q) and a proof of R.
 What remains, then, is to obtain these proofs.
 But this is easily done by the application of
-____ to ____. QED. 
+and.intro to a proof of P and a proof of R. QED. 
 -/
 
 
