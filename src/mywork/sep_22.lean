@@ -7,3 +7,5 @@ begin
   have f := np p,
   exact false.elim f,
 end
+
+axiom excluded_middle : ∀ (P: Prop), (P ∨ ¬P)
