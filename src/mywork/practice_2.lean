@@ -1,4 +1,8 @@
 /-
+Catherine Johnson (caj8agf)
+-/
+
+/-
 Prove the following simple logical conjectures.
 Give a formal and an English proof of each one.
 Your English language proofs should be complete
