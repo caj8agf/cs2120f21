@@ -285,6 +285,7 @@ end
 Formally state and prove the proposition that
 not every natural number is equal to zero.
 -/
+
 lemma not_all_nats_are_zero : (∃ (n : ℕ), ¬ n = 0) → true :=
 begin
   assume h,
