@@ -298,6 +298,7 @@ example : ∀ (P Q : Prop), (P → Q) ↔ (¬P ∨ Q) :=
 begin
   assume P Q,
   apply iff.intro _ _,
+  --forward
   assume pq,
   have pnp : P ∨ ¬P := classical.em P,
   apply or.elim pnp,
@@ -310,6 +311,7 @@ begin
   assume np,
   apply or.intro_left _ _,
   exact np,
+  --backward
   assume npq,
   apply or.elim npq,
   --left disjunct true
