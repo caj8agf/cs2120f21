@@ -41,7 +41,7 @@ rule for →.
 
 (P Q : Prop) (p2q : P → Q) (p : P)
 ----------------------------------
-     q : Q
+     (q : Q)
 -/
 
 -- Give a formal proof of the following
@@ -75,7 +75,8 @@ inference rule notation.
 Give a brief English language explanation of
 the introduction rule for true.
 
--- True is always true, and therefore, has a proof.
+-- True is always true, and therefore, there 
+is always a proof of true.
 
 ELIMINATION
 
@@ -114,12 +115,28 @@ this inference rule. What does it really
 say, in plain simple English. 
 
 -- If you have a proof of P and a proof of Q,
-you have a proof of P ∧ Q
+you have a proof of P ∧ Q.
 
 ELIMINATION
 
-Given the elimination rules for ∧ in both
+Give the elimination rules for ∧ in both
 inference rule and English language forms.
+-/
+
+/-
+Left Elimination: Given a proof of P ∧ Q, 
+there is a proof of P.
+
+(P Q : Prop) (pq : P ∧ Q)
+------------------------- left_elim
+        (p : P)
+
+Right Elimination: Given a proof of P ∧ Q,
+there is a proof of Q.
+
+(P Q : Prop) (pq : P ∧ Q)
+------------------------- right_elim
+        (q : Q)
 -/
 
 /-
@@ -127,11 +144,11 @@ Formally state and prove the theorem that,
 for any propositions P and Q,  Q ∧ P → P. 
 -/
 
-example : ∀ (P Q : Prop), P ∧ Q → P := 
+example : ∀ (P Q : Prop), Q ∧ P → P := 
 begin
   assume P Q,
-  assume pq,
-  exact and.elim_left pq,
+  assume qp,
+  exact and.elim_right qp,
 end
 
 
@@ -147,8 +164,8 @@ T is any type (such as nat) and Q is any proposition
 given type), how do you prove ∀ (t : T), Q? What is
 the introduction rule for ∀?
 
--- If you have an arbitrary value, t, of Type T and a
-proof of Q t can be constructed, there is a proof of 
+-- If you have an arbitrary value, say x, of Type T and a
+proof of Q x can be constructed, there is a proof of 
 ∀ (t : T), Q.
 
 
@@ -169,8 +186,8 @@ Given a proof, (pf : ∀ (t : T), Q), and a value, (t : T),
 briefly explain in English how you *use* pf to derive a
 proof of Q.
 
--- We know that ever t has property Q by the proof, pf. 
-You apply the proof, pf, to the value, t to derive a
+-- We know that every t has property Q by the proof pf. 
+You apply the proof, pf, to the value, t, to derive a
 proof of Q t. In other words, you use pf as a function
 with t as the argument.
 -/
@@ -190,13 +207,13 @@ axioms
   -- (1) Lynn is a person
   (Lynn : Person)
   -- (2) Lynn knows logic
-  (Lkl : KnowsLogic Lynn)
+  (LKL : KnowsLogic Lynn)
 
 /-
 Now, formally state and prove the proposition that
 Lynn is a better computer scientist
 -/
-example : BetterComputerScientist Lynn := LogicMakesYouBetterAtCS Lynn (Lkl)
+example : BetterComputerScientist Lynn := LogicMakesYouBetterAtCS Lynn (LKL)
 
 -- -------------------------------------
 
@@ -238,7 +255,7 @@ Fill in the blanks the following partial answer:
 To prove P, assume _¬P_ and show that _there is a contradiction_.
 From this derivation you can conclude _¬¬P_.
 Then you apply the rule of negation _elimination_
-to that result to arrive a a proof of P. We have
+to that result to arrive at a proof of P. We have
 seen that the inference rule you apply in the 
 last step is not constructively valid but that it
 is _classically_ valid, and that accepting the axiom
@@ -335,13 +352,13 @@ begin
   assume Likes,
   assume elantp,
   assume JL,
-  assume ntJL,
+  assume JLNT,
   assume p,
-  have nJL := and.elim_left ntJL,
-  have tJL := and.elim_right ntJL,
+  have JLN := and.elim_left JLNT,
+  have JLT := and.elim_right JLNT,
   have lantp := elantp JL,
-  have latp := lantp nJL,
-  have lap := latp tJL,
+  have latp := lantp JLN,
+  have lap := latp JLT,
   exact lap p,
 end
 
@@ -419,7 +436,7 @@ begin
   assume P,
   apply iff.intro _ _,
     --forward
-    assume npp,
+    assume nnpp,
     cases classical.em P with p np,
       --P true
       exact or.intro_left _ p,
@@ -446,10 +463,15 @@ thre is someone who loves everyone. [5 points]
 
 axiom Loves : Person → Person → Prop
 
-example : (∀ (x y : Person), Loves x y → Loves y x) → 
-    ∀ (p : Person), ∃ (ind : Person), Loves p ind → Loves ind p :=
+axiom Loves_symm : ∀ (x y : Person), Loves x y → Loves y x
+
+example : ∀ (p : Person), (∃ (ind : Person), Loves p ind) → 
+  (∃ (ind : Person), Loves ind p) :=
 begin 
-  assume symm,
   assume p,
-  
+  assume h,
+  cases h with ind plind,
+  have g := Loves_symm p ind,
+  have indlp := g plind,
+  exact exists.intro ind indlp,
 end
