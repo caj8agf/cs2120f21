@@ -1,3 +1,5 @@
+import data.set
+
 /-
 CS2120 F21 HW5
 
@@ -50,12 +52,11 @@ function that maps/takes every α value that ...
 
 -- Give your formal proof here
 begin
-  _
+  assume h k,
+  cases h with hw hpf,
+  cases k with kw kpf,
+  apply exists.intro (hw kw),
+  exact (hpf kw kpf),
 end
   
 
-/- 
-PART II: BASIC SET THEORY
-
-stay tuned!
--/
