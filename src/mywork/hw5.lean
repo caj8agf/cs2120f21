@@ -44,7 +44,12 @@ example :
 What does this propositon say? Explain it in
 plain English. Here's a start: "If there's a 
 function that maps/takes every α value that ... 
--- your completed English rendition here:
+-- returns a β value and for every α value, if
+it satisfies the predicate p than the resulting
+β value from the function satisfies the predicate
+q, than if there is an α value that satisfies
+the predicate p than there must be a β value that
+satisfies the predicate q.
 -/
 
 
@@ -52,8 +57,12 @@ function that maps/takes every α value that ...
 begin
   assume h,
   assume i,
-  cases h with w h,
-  cases i with a i,
+  cases h with f h,
+  cases i with a j,
+  have k := h a,
+  have m := k j,
+  apply exists.intro (f a),
+  exact m,
 end
   
 
