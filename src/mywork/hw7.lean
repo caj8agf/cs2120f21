@@ -261,10 +261,14 @@ begin
   unfold divides,
   assume xdy,
   assume ydx,
-  cases xdy with n xdy,
+  cases xdy with m xdy,
   cases ydx with n ydx,
-  -- rw xdy,
-  -- rw ydx,
+  rw xdy,
+  rw ydx,
+  -- have mm : m = 1,
+  -- sorry,
+  -- rw mm,
+  -- ring,
 end
 
 /-
@@ -316,8 +320,23 @@ begin
   assume x y,
   assume rxy,
   assume ryx,
-  
+  have rxx := trans rxy ryx,
+  have nrxx := irrefl x,
+  contradiction,
 end
+
+/-
+English: To prove that r is asymmetric if it is irreflxive
+and transitive, we must prove that if x is related to y, then
+y is not related to x. To do so we must prove that given a 
+proof that x is related to y, a proof that y is related to x
+implies a proof of false. To do so, we assume that x is related
+to y and that y is related to x. Given the proof that r is 
+transitive, these two proofs generate a proof that x is related
+to x. However, the proof that r is irreflexive generates a proof
+that x is not related to itself. These two proofs create a 
+contradiction, proving that r is not asymmetric.
+-/
 
 -- C
 example : transitive r → ¬ symmetric r → ¬ irreflexive r :=
@@ -328,8 +347,11 @@ begin
   assume nsymm,
   unfold irreflexive,
   assume irrefl,
-  
+
 end
 
+/-
+
+-/
 
 end relation
