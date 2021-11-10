@@ -265,10 +265,12 @@ begin
   cases ydx with n ydx,
   rw xdy,
   rw ydx,
-  -- have mm : m = 1,
-  -- sorry,
-  -- rw mm,
-  -- ring,
+  rw xdy at ydx,
+  have m1 : m = 1 := sorry,
+  have n1 : n = 1 := sorry,
+  rw m1,
+  rw n1,
+  ring,
 end
 
 /-
@@ -339,6 +341,7 @@ contradiction, proving that r is not asymmetric.
 -/
 
 -- C
+
 example : transitive r → ¬ symmetric r → ¬ irreflexive r :=
 begin
   unfold transitive,
@@ -347,11 +350,10 @@ begin
   assume nsymm,
   unfold irreflexive,
   assume irrefl,
-
 end
 
 /-
-
+This cannot be prove for multiple reasons. Firstly, 
 -/
 
 end relation
