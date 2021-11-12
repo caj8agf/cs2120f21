@@ -97,9 +97,10 @@ end
 
 /-
 No, this conjecture is not logically valid because if the set defined
-by the relation r is empty, than the conjecture would be false due to
+by the relation r is empty, than the conjecture could be false due to
 the universal generalization over an empty set which states that any
-generalization about an empty set is true.
+generalization about an empty set is true. Therefore, it could be true 
+that r is asymmetric and therefore, we cannot prove the conjecture.
 -/
 
 example : (∃ (b : β), true) → transitive r → reflexive r → ¬ asymmetric r :=
@@ -274,7 +275,13 @@ begin
 end
 
 /-
-English: 
+English: In order to prove that divides is antisymmetric, you must show
+that for all natural numbers x and y, if x divides y and y divides x,
+than x and y must be equal. Given a proof that x divides y, there is
+a witness, m and a proof that y = m * x. Given a proof that y divides
+x, there is a witness, n, and a proof that x = n * y. By siimple 
+arithmetic, it is clear that m and n both equal 1. Based on this, by 
+simple arithmetic, it is clear that x = y.
 -/
 
 
@@ -353,7 +360,30 @@ begin
 end
 
 /-
-This cannot be prove for multiple reasons. Firstly, 
+This cannot be proven for multiple reasons. Firstly, if r is 
+both transitive and not symmetric, than the proof is irreflexive
+and therefore, it cannot be proven that it is not irreflexive. 
+For example, if there is x and y of type β and there are proofs
+that x is related to y and y is related to x, then by the proof
+that r is transitive, there is a proof that x is related to x.
+This would mean that r is not irreflexive. However, there is
+a proof that r is not symmetric and therefore, there cannot
+be proofs that both x is related to y and y is related to x. 
+Therefore, we cannot prove based on what we have been given
+that x is related to x and therefore, cannot prove that r is 
+not irreflexive. 
+
+Additionally, based on what we have been given, we cannot 
+complete the proof because we cannot assume that β is inhabited.
+Without a proof that β is inhabited, we cannot assume that it 
+is not an empty set and therefore cannot prove the proposition to 
+be true. 
+
+Lastly, if the set defined by the relation r is empty, than the 
+conjecture could be false due to the universal generalization over 
+an empty set which states that any generalization about an empty 
+set is true. Therefore, it could be true that r is asymmetric and 
+therefore, we cannot prove the conjecture that r is not asymmetric.
 -/
 
 end relation
