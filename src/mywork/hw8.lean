@@ -183,6 +183,17 @@ example :
   image_set r (dom r) = { b : β | true } :=
 begin
 -- homework (on your own ungraded but please do it!)
+  assume surj,
+  unfold surjective at surj,
+  have tot := surj.left,
+  unfold total_function at tot,
+  have allbdef := surj.right,
+  have func := tot.left,
+  unfold function at func,
+  unfold single_valued at func,
+  have adef := tot.right,
+  unfold defined at adef,
+  unfold image_set,
 end
 
 /-
@@ -448,8 +459,43 @@ begin
         apply r_oto irba1 irba2,
       --defined
         assume b,
+        have rab := r_all b,
+        cases rab with a rab,
         unfold defined,
-        -- apply exists.intro a,
+        apply exists.intro a,
+        unfold inverse,
+        exact rab,
+    --all
+      assume a,
+      have rab := alldef a,
+      cases rab with b rab,
+      apply exists.intro b,
+      unfold inverse,
+      exact rab,
+  --injective
+    unfold injective,
+    split,
+    --total_function
+      unfold total_function,
+      split,
+      --function
+        unfold function,
+        unfold single_valued,
+        assume b a1 a2 irba1 irba2,
+        unfold inverse at irba1 irba2,
+        apply r_oto irba1 irba2,
+      --defined
+        assume b,
+        have rab := r_all b,
+        cases rab with a rab,
+        unfold defined,
+        apply exists.intro a,
+        unfold inverse,
+        exact rab,
+    --oto
+      assume b1 b2 a irb1a irb2a,
+      unfold inverse at irb1a irb2a,
+      apply r_fun irb1a irb2a,
 end
 
 
