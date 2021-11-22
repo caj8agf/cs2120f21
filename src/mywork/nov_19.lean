@@ -676,6 +676,10 @@ EXERCISE: Define the factorial function by recursion
 
 def factorial : nat → nat :=
 begin
+  assume n,
+  induction n with n' n'_fac,
+  exact nat.zero,
+  exact n'_fac * (n' + 1),
 end
 
 /-

@@ -194,6 +194,7 @@ begin
   have adef := tot.right,
   unfold defined at adef,
   unfold image_set,
+  show ∃ (a : α), a ∈ dom r ∧ r a b,
 end
 
 /-
