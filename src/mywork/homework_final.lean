@@ -112,6 +112,72 @@ end
 
 -- #2 Formal or detailed informal proofs 10-13
 
+/-
+#10 Give an informal but detailed proof that for every 
+natural number n, 1*n=n, using a proof by induction, 
+the definition of multiplication and the theorems 
+proved in Section 17.4.
+-/
+
+/-
+To prove that for every natural number n, 1*n=n, we conduct
+a proof by induction. To do so, we must first prove the base
+case, that the above is true when n=0, and then the inductive
+case, that assuming the above is true for n, it is true for
+n+1.
+
+The definition of multplication is as follows:
+m*0=0
+m*succ(n) = m*n+m
+
+To prove the base case, we must show that 1*0=0. The first 
+clause of the definition of multiplication proves this to be
+true. 
+
+To prove the inductive case, we first assume that 1*n=n. From
+the second clause of the definition of multiplication, we get
+1*succ(n)=1*(n)+1=succ(n) which is true by simple algebra.
+-/
+
+def mul : nat → nat → nat
+| (m) (nat.zero) := nat.zero
+| (m) (nat.succ n') := m * n' + m
+
+def Pmul : ℕ → Prop :=
+  λ n, mul 1 n = n
+
+theorem Pmult : ∀ n, Pmul n :=
+begin
+  assume n,
+  unfold Pmul,
+  induction n with n' ih_n',
+  --base case
+    exact rfl,
+  --inductive case
+    simp [mul],
+
+
+end
+/-
+#11 Show that multiplication distributes over addition.
+In other words, prove that for natural numbers m, n, and
+k, m(n+k) = mn + mk. You should use the definitions of
+addition and multiplication and facts proved in Section
+17.4 (but nothing more).
+-/
+
+
+
+/-
+#12 Prove the multiplication is associative, in the same
+way. You can use any of the facts proved in Section 17.4
+and the previous exercise.
+-/
+
+/-
+#13 Prove that multiplication is commutative.
+-/
+
 
 
 /-
