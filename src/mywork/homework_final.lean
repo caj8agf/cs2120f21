@@ -155,8 +155,6 @@ begin
     exact rfl,
   --inductive case
     simp [mul],
-
-
 end
 /-
 #11 Show that multiplication distributes over addition.
@@ -166,7 +164,19 @@ addition and multiplication and facts proved in Section
 17.4 (but nothing more).
 -/
 
+def mda : ℕ → ℕ → ℕ → Prop :=
+  λ m n k, m*(n+k) = m*n+m*k
 
+theorem multdadd : ∀ m n k, mda m n k :=
+begin 
+  assume m n k,
+  unfold mda,
+  induction m with m' ih_m',
+  -- base case
+    ring,
+  --inductive case
+    ring,    
+end
 
 /-
 #12 Prove the multiplication is associative, in the same
@@ -174,10 +184,57 @@ way. You can use any of the facts proved in Section 17.4
 and the previous exercise.
 -/
 
+def mulassoc : ℕ → ℕ → ℕ → Prop :=
+  λ m n k, (m*n)*k = m*(n*k)
+
+theorem mult_assoc : ∀ m n k, mulassoc m n k  :=
+begin
+  assume m n k,
+  unfold mulassoc,
+  induction m with m' ih_m',
+  --base case
+    ring,
+  --inductive case
+    ring,
+end
+
 /-
 #13 Prove that multiplication is commutative.
 -/
 
+def mulcommut : ℕ → ℕ → Prop :=
+  λ m n, m*n = n*m
+
+theorem mult_commut : ∀ m n, mulcommut m n :=
+begin
+  assume m n,
+  unfold mulcommut,
+  induction m with m' ih_m',
+  --base case
+    ring,
+  --inductive case
+    ring,
+end
+
+--Extra credit
+
+-- #5
+/-
+Given the definition of the Fibonacci numbers in Section
+17.3, prove Cassini's identity: for every n, F2n+1 - Fn+2Fn
+= (-1)^n. Hint: in the induction step, write F2n+2 as
+Fn+2(Fn+1 + Fn).
+-/
+
+-- #9
+/-
+Let V bet a non-empty set of integers such that the following
+two properties hold: 
+  If x, y ∈ V, then x-y ∈ V.
+  If x ∈ V, then every multiple of x is an element of V.
+Prove that there is some d ∈ V, such that V is equal to the
+set of multiples of d. Hint: use the least element principle.
+-/
 
 
 /-
